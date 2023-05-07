@@ -10,7 +10,11 @@ export function ProgressBar({ progress }: ProgressBarProps) {
       <div className={styles.progressBar}>
         <progress className={styles.range} value={progress} max="100" />
       </div>
-      <span>{progress}%</span>
+      <span
+        className={progress === 100 ? styles.allDone : styles.progressPercent}
+      >
+        {progress}%
+      </span>
     </div>
   );
 }

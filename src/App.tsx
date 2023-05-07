@@ -14,16 +14,8 @@ interface TaskProps {
   isDone: boolean;
 }
 
-const taskList: TaskProps[] = [
-  {
-    id: uuidv4(),
-    title: 'Insira um título aqui',
-    isDone: false
-  }
-]
-
 function App() {
-  const [tasks, setTasks] = useState<TaskProps[]>(taskList)
+  const [tasks, setTasks] = useState<TaskProps[]>([])
   const [title, setTitle] = useState('')
   const [finishedTasks, setFinishedTasks] = useState(0)
   const [progress, setProgress] = useState(0)
