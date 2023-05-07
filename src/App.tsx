@@ -45,39 +45,39 @@ function App() {
     })
 
     setTasks(tasksWithoutChangedOne)
-    handleFinishedTasks()
-  }
-
-  function handleFinishedTasks() {
-    const sumFinishedTasks = tasks.reduce(
-      (accumulator, task) => accumulator + (task.isDone ? 1 : 0),
-      0
-    );
-
-    setFinishedTasks(sumFinishedTasks)
   }
 
   function handleDeleteTask(idOfTaskToBeDeleted: string) {
     const tasksWithoutDeletedOne = tasks.filter(task => {
       return task.id !== idOfTaskToBeDeleted
     });
-    
+
     setTasks(tasksWithoutDeletedOne)
   }
 
-  function handleProgress() {
-    if (tasks.length > 0) {
-      const progressInPerCent = finishedTasks/tasks.length*100
-      const roundedProgress = Math.round(progressInPerCent)
-      
-      setProgress(roundedProgress)
-    }
-    else {
-      setProgress(0)
-    }
-  }
-
   useEffect(() => {
+    function handleFinishedTasks() {
+      const sumFinishedTasks = tasks.reduce(
+        (accumulator, task) => accumulator + (task.isDone ? 1 : 0),
+        0
+      );
+  
+      setFinishedTasks(sumFinishedTasks)
+    }
+
+    function handleProgress() {
+      if (tasks.length > 0) {
+        const progressInPerCent = finishedTasks/tasks.length*100
+        const roundedProgress = Math.round(progressInPerCent)
+        
+        setProgress(roundedProgress)
+      }
+      else {
+        setProgress(0)
+      }
+    }
+
+    handleFinishedTasks()
     handleProgress()
   }, [finishedTasks, progress, tasks])
 
